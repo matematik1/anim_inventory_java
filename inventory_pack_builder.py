@@ -324,13 +324,22 @@ class App:
                 .convert("RGBA")
             )
 
-            inventory_overlay = inv.crop(
+            inventory_overlay = Image.new(
+                "RGBA",
                 (
-                    0,
-                    0,
                     FRAME_W,
                     FRAME_H
-                )
+                ),
+                (0,0,0,0)
+            )
+
+            inventory_overlay.paste(
+                inv,
+                (
+                    0,
+                    0
+                ),
+                inv
             )
 
             gif = Image.open(self.gif_path)
@@ -400,7 +409,7 @@ class App:
                 / "inventory.png"
             )
 
-            inventory_overlay.save(
+            inv.save(
                 tex
                 / "inventory.png"
             )
